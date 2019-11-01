@@ -1,0 +1,31 @@
+
+div.sheet-wrapper {
+    width: 320px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+div.sheet-row {
+    display: flex;
+    flex: 1;
+}
+
+div.sheet-cell {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: darkblue;
+    border: dotted gray thin;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+div.sheet-cell.punched {
+    color: white;
+    background-color: darkblue;
+    font-weight: bold;
+}
