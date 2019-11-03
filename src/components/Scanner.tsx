@@ -9,9 +9,11 @@ import {detectQRCodeFromVideo} from '../services/Detector'
 const vh = 320;
 const vw = 320;
 
+const facingMode = navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/i) ? { exact: "environment" } : "user";
+
 const ScannButton: React.FC<{ setStream: (stream: MediaStream) => void }> = ({ setStream }) => {
     const startScanProcess = async () => {
-        const stream = await navigator.mediaDevices.getUserMedia({audio: false, video: {width: vw, height: vh}});
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { width: vw, height: vh, facingMode } });
         setStream(stream);
     };
     return (
