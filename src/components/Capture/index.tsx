@@ -13,7 +13,7 @@ const CaptureView: React.FC<{
     const input = useRef<HTMLInputElement>(null);
     const [imgURL, setImageURL] = useState<string>("");
     const onChangeImage = ({ target }: { target: HTMLInputElement }) => {
-        if (!target.files) return setImageURL(""); // Image not set.
+        if (!target.files || !target.files.length) return setImageURL(""); // Image not set.
         const f = target.files[0];
         const r = new FileReader();
         r.onload = async () => {
