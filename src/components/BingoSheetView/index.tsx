@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import BingoSheet from "../../models/sheet";
 import BingoSlot from '../../models/slot';
-import './index.css';
+import './index.scss';
 
 const BingoSheetCell: React.FC<{slot: BingoSlot}> = ({slot}) => {
     return (

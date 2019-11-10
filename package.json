@@ -36,7 +36,8 @@
     ]
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.9"
+    "@types/classnames": "^2.2.9",
+    "node-sass": "^4.13.0"
   },
   "homepage": "."
 }

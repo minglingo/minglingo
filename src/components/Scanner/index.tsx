@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import DebugLog from '../debug/DebugLog';
-import './Scanner.css';
-import camera from './camera.svg';
+import DebugLog from '../../debug/DebugLog';
+import './index.scss';
+import camera from '../camera.svg';
 
-import {detectQRCodeFromVideo} from '../services/Detector'
+import {detectQRCodeFromVideo} from '../../services/Detector'
 
 // Video size
 const vh = 320;

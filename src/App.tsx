@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import './App.css';
+import './App.scss';
 
 import BingoSheetView from './components/BingoSheetView';
-import Scanner from './components/Scanner';
 import DebugLog from './debug/DebugLog';
 
 import config from './config.json';
 import BingoSheet from './models/sheet';
+import CaptureView from './components/Capture';
 
 const LogListItemView: React.FC<{log: DebugLog}> = ({log}) => {
   return (
@@ -24,11 +24,11 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Scanner pushLog={pushLog} />
+      <BingoSheetView sheet={sheet} />
+      <CaptureView pushLog={pushLog} />
       <div>
         <ul>{logs.reverse().map(log => <LogListItemView key={log.timestamp} log={log} />)}</ul>
       </div>
-      <BingoSheetView sheet={sheet} />
     </div>
   );
 }

@@ -1,0 +1,33 @@
+@import "../../variables.scss";
+
+div.capture-trigger-wrapper {
+    box-sizing: border-box;
+    width: $bingo-sheet-size;
+    display: flex;
+
+    >div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.capture-result-container {
+            flex: 1;
+            padding-right: $spacing;
+            height: ($bingo-sheet-size / 4) - $spacing;
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+        &.capture-trigger-container {
+            flex: 3;
+            background-color: $primary-color;
+            img {
+                width: 2.4em;
+            }
+        }
+    }
+    input[type=file] {
+        display: none;
+    }
+}

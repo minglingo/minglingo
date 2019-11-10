@@ -1,0 +1,34 @@
+@import "../../variables.scss";
+
+div.sheet-wrapper {
+    margin: $spacing;
+    width:  $bingo-sheet-size;
+    height: $bingo-sheet-size;
+
+    display: flex;
+    flex-direction: column;
+
+    div.sheet-row {
+        display: flex;
+        flex: 1;
+
+        div.sheet-cell {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            color: darkblue;
+            border: dotted gray thin;
+            font-size: 1.4em;
+            font-weight: bold;
+
+            &.sheet-cell.punched {
+                color: white;
+                background-color: darkblue;
+                font-weight: bold;
+            }
+        }
+    }
+}
