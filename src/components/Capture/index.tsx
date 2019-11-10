@@ -6,7 +6,10 @@ import './index.scss';
 import { detectQRCodeFromImageURL } from '../../services/Detector';
 import { QRCodeData } from '../../models/qrcode';
 
-const CaptureView: React.FC<{ pushLog: (log: DebugLog) => void }> = ({ pushLog }) => {
+const CaptureView: React.FC<{
+    pushLog: (log: DebugLog) => void,
+    punch: (data: QRCodeData) => void,
+}> = ({ pushLog, punch }) => {
     const input = useRef<HTMLInputElement>(null);
     const [imgURL, setImageURL] = useState<string>("");
     const onChangeImage = ({ target }: { target: HTMLInputElement }) => {
@@ -18,7 +21,7 @@ const CaptureView: React.FC<{ pushLog: (log: DebugLog) => void }> = ({ pushLog }
             const qrcode = await detectQRCodeFromImageURL(r.result as string);
             if (!qrcode) return; // QR code not detected.
             const data = JSON.parse(qrcode.data) as QRCodeData;
-            pushLog(new DebugLog(data.action, data.payload));
+            punch(data);
         };
         r.readAsDataURL(f);
     };

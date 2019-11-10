@@ -1,4 +1,5 @@
 import BingoSlot, { IBingoSlotConfig } from './slot';
+import { Payload } from './qrcode';
 
 export interface IBingoConfig {
     sheet: {
@@ -55,4 +56,23 @@ export default class BingoSheet {
         return new BingoSheet(config.sheet.width, config.sheet.height, slots);
     }
 
+    /**
+     * hit returns the slot which matches the given payload,
+     * or undefined if not found.
+     * @param payload
+     */
+    public hit(payload: Payload): BingoSlot | void {
+        // eslint-disable-next-line
+        return this.slots.flat().find((slot) => slot.value === payload.value);
+    }
+
+    public punch(hit: BingoSlot): BingoSheet {
+        // eslint-disable-next-line
+        this.slots.flat().filter((slot) => slot.value === hit.value).map((slot) => {
+            // slot.punched = true;
+            const {x, y} = slot.position;
+            this.slots[y][x].punched = true;
+        });
+        return this;
+    }
 }

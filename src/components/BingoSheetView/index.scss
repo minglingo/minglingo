@@ -21,12 +21,13 @@ div.sheet-wrapper {
             background-color: white;
             color: darkblue;
             border: dotted gray thin;
-            font-size: 1.4em;
+            // font-size: 1.4em;
             font-weight: bold;
 
             &.sheet-cell.punched {
                 color: white;
-                background-color: darkblue;
+                // background-color: darkblue;
+                background-color: red;
                 font-weight: bold;
             }
         }
