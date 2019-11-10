@@ -8,7 +8,7 @@ import './index.scss';
 
 const BingoSheetCell: React.FC<{slot: BingoSlot}> = ({slot}) => {
     return (
-        <div className={cn("sheet-cell", {punched: slot.punched})}>
+        <div className={cn("sheet-cell", { punched: slot.punched, bingo: slot.bingo })}>
             {slot.label.split("\n").map((line, i) => <div key={i}>{line}</div>)}
         </div>
     );
@@ -24,7 +24,7 @@ const BingoSheetRow: React.FC<{row: BingoSlot[]}> = ({row}) => {
 
 const BingoSheetView: React.FC<{sheet: BingoSheet}> = ({sheet}) => {
     return (
-        <div className="sheet-wrapper">
+        <div className={cn("sheet-wrapper", { bingo: sheet.isBingo() })}>
             {sheet.slots.map((row, i) => <BingoSheetRow key={i} row={row} />)}
         </div>
     );

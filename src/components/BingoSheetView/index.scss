@@ -21,15 +21,26 @@ div.sheet-wrapper {
             background-color: white;
             color: darkblue;
             border: dotted gray thin;
-            // font-size: 1.4em;
+            font-size: xx-large;
             font-weight: bold;
 
-            &.sheet-cell.punched {
+            &.sheet-cell.punched:not(.bingo) {
                 color: white;
-                // background-color: darkblue;
-                background-color: red;
+                background-color: blue;
                 font-weight: bold;
+                box-shadow: 0 0 24px darkblue inset;
             }
         }
     }
+
+    &.bingo>div.sheet-row {
+        >div.sheet-cell {
+            color: white;
+            background-color: deepskyblue;
+            &.bingo {
+                background-color: orange;
+            }
+        }
+    }
+
 }

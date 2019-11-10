@@ -66,6 +66,10 @@ export default class BingoSheet {
         return this.slots.flat().find((slot) => slot.value === payload.value);
     }
 
+    /**
+     * punch marks the given hit slot as punched.
+     * @param hit
+     */
     public punch(hit: BingoSlot): BingoSheet {
         // eslint-disable-next-line
         this.slots.flat().filter((slot) => slot.value === hit.value).map((slot) => {
@@ -74,5 +78,68 @@ export default class BingoSheet {
             this.slots[y][x].punched = true;
         });
         return this;
+    }
+
+    public isBingo(): boolean {
+        return this.getBingo().length !== 0;
+    }
+
+    public getBingo(): BingoSlot[] {
+        let bingo: BingoSlot[] = [];
+        bingo = bingo.concat(this.getHorizontalBingo());
+        bingo = bingo.concat(this.getVerticalBingo());
+        bingo = bingo.concat(this.getDiagonalBingo());
+        this.markSlotsIfBingo(bingo);
+        return bingo;
+    }
+
+    private markSlotsIfBingo(bingo: BingoSlot[]) {
+        bingo.map((slot) => this.slots[slot.position.y][slot.position.x].bingo = true);
+    }
+
+    /**
+     * Return all the slots which constitute the horizontal bingo.
+     */
+    public getHorizontalBingo(): BingoSlot[] {
+        for (let row = 0; row < this.height; row++) {
+            if (this.slots[row].every((slot) => slot.punched)) {
+                return this.slots[row];
+            }
+        }
+        return [];
+    }
+
+    /**
+     * Return all the slots which constitute the vertical bingo.
+     */
+    public getVerticalBingo(): BingoSlot[] {
+        for (let col = 0; col < this.width; col++) {
+            if (this.slots.every((row) => row[col].punched)) {
+                return this.slots.map((row) => row[col]).flat();
+            }
+        }
+        return [];
+    }
+
+    /**
+     * Return all the slots which constitute the diagonal bingo.
+     */
+    public getDiagonalBingo(): BingoSlot[] {
+        let bingo: BingoSlot[] = [];
+        if (this.width === this.height) {
+            const len = Math.min(this.width, this.height);
+            const backslash = this.slots.map((row, i) => row[i]);
+            if (backslash.every(slot => slot.punched)) {
+                bingo = bingo.concat(backslash);
+            }
+            const slash = this.slots.map((row, i) => row[len - i - 1]);
+            if (slash.every(slot => slot.punched)) {
+                bingo = bingo.concat(slash);
+            }
+        } else {
+            // TODO: Consider NON-SQUARE bingo sheet.
+            return [];
+        }
+        return bingo;
     }
 }

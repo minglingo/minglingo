@@ -16,6 +16,7 @@ export default class BingoSlot {
             x: number,
             y: number
         } = { x: 0, y: 0 },
-        public punched: boolean = false
+        public punched: boolean = false,
+        public bingo: boolean = false,
     ) {}
 }
