@@ -14,6 +14,7 @@ export interface IBingoConfig {
 export default class BingoSheet {
 
     public length: number;
+    public initialized: Date;
 
     constructor(
         public width: number,
@@ -21,6 +22,7 @@ export default class BingoSheet {
         public slots: BingoSlot[][]
     ) {
         this.length = width * height;
+        this.initialized = new Date();
     }
 
     private static arrayShuffle<T>(arr: T[]): T[] {
