@@ -34,6 +34,8 @@ const App: React.FC = () => {
   const punch = (data: QRCodeData) => {
     const slot = bingo.sheet.hit(data.payload);
     if (!slot) return; // TODO: do something
+    // TODO: Implement better feedback UI
+    alert(`Congrats! You found the one!!\n\nThe person with you is ${data.payload.value.toString().toUpperCase()}!`)
     updateBingo({ sheet: bingo.sheet.punch(slot) });
   };
   const reset = () => {
