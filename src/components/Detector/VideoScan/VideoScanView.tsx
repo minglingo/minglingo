@@ -7,7 +7,6 @@ import { QRCodeData } from '../../../models/qrcode';
 
 const [vw, vh] = [80, 80];
 
-// TODO: Use rear camera.
 const isMobile = /(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent);
 const facingMode =  isMobile ? { exact: 'environment' } : 'user';
 const constraints = { audio: false, video: { width: vw, height: vh, facingMode } };
@@ -17,11 +16,12 @@ const VideoScanView: React.FC<{ punch(data: QRCodeData): void }> = ({ punch }) =
     const canvas = document.createElement('canvas');
     canvas.width = vw; canvas.height = vh;
     let detectorInterval: NodeJS.Timeout;
-    const detect = (video: HTMLVideoElement) => {
+    const detect = (video: HTMLVideoElement, stream: MediaStream) => {
         const qrcode = detectQRCodeFromVideo({ video, canvas })
         if (!qrcode) return;
         clearInterval(detectorInterval);
         video.pause();
+        stream.getTracks().map(track => track.stop());
         punch(JSON.parse(qrcode.data));
     };
     const startVideoScanning = async () => {
@@ -30,7 +30,7 @@ const VideoScanView: React.FC<{ punch(data: QRCodeData): void }> = ({ punch }) =
         vref.current.setAttribute('muted', '');
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         vref.current.srcObject = stream;
-        detectorInterval = setInterval(() => detect(vref.current as HTMLVideoElement), 1000);
+        detectorInterval = setInterval(() => detect(vref.current as HTMLVideoElement, stream), 1000);
     };
     return (
         <div className="video-capture-container">
