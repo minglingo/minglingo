@@ -7,7 +7,10 @@ const BingoSheetContext = createContext({
     bingo: {
         sheet: BingoSheet.create(config.bingo),
     },
-    punch(data: QRCodeData) {}
+    punch(data: QRCodeData) {},
+    scanning: false,
+    startScanning() {},
+    stopScanning() {},
 });
 
 export default BingoSheetContext;

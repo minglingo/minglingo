@@ -2,23 +2,22 @@ import React, { useState } from 'react';
 import './App.scss';
 
 import BingoSheetView from './components/BingoSheetView';
-import DebugLog from './debug/DebugLog';
 
 import BingoSheet from "./models/sheet";
 import config from "./config.json";
 
 import BingoSheetContext from './context/BingoSheet';
-import CaptureView from './components/Capture';
 import { QRCodeData } from './models/qrcode';
 import GameMenu from './components/GameMenu';
+import VideoScanView from './components/Detector/VideoScan/VideoScanView';
 
-const Content: React.FC<{ pushLog: (log: DebugLog) => void, reset: () => void, }> = ({ pushLog, reset, }) => {
+const Content: React.FC<{ reset: () => void, }> = ({ reset, }) => {
   return (
     <BingoSheetContext.Consumer>
       {({bingo, punch}) => <div className="App">
         <GameMenu app={config.application} sheet={bingo.sheet} reset={reset} />
         <BingoSheetView sheet={bingo.sheet} />
-        <CaptureView pushLog={pushLog} punch={punch} />
+        <VideoScanView punch={punch} />
       </div>
       }
     </BingoSheetContext.Consumer>
@@ -27,8 +26,9 @@ const Content: React.FC<{ pushLog: (log: DebugLog) => void, reset: () => void, }
 
 const App: React.FC = () => {
 
-  const [logs, setLog] = useState([] as DebugLog[]);
-  const pushLog = (log: DebugLog) => setLog(logs.concat(log));
+  const [scanning, setScanState] = useState(false);
+  const startScanning = () => setScanState(true);
+  const stopScanning = () => setScanState(false);
 
   const [bingo, updateBingo] = useState({sheet: BingoSheet.create(config.bingo)});
   const punch = (data: QRCodeData) => {
@@ -41,9 +41,14 @@ const App: React.FC = () => {
     updateBingo({ sheet: BingoSheet.create(config.bingo) });
   };
 
+  const context = {
+    bingo, punch,
+    scanning, startScanning, stopScanning,
+  };
+
   return (
-    <BingoSheetContext.Provider value={{bingo, punch}}>
-      <Content pushLog={pushLog} reset={reset} />
+    <BingoSheetContext.Provider value={context}>
+      <Content reset={reset} />
     </BingoSheetContext.Provider>
   );
 }

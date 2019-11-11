@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
-import DebugLog from '../../debug/DebugLog';
+import DebugLog from '../../../debug/DebugLog';
 
 import camera from '../camera.svg';
 import './index.scss';
-import { detectQRCodeFromImageURL } from '../../services/Detector';
-import { QRCodeData } from '../../models/qrcode';
+import { detectQRCodeFromImageURL } from '../../../services/Detector';
+import { QRCodeData } from '../../../models/qrcode';
 
 const CaptureView: React.FC<{
     pushLog: (log: DebugLog) => void,
