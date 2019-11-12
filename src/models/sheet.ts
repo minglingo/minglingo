@@ -1,3 +1,5 @@
+import {Model, Types} from 'chomex';
+
 import BingoSlot, { IBingoSlotConfig } from './slot';
 import { Payload } from './qrcode';
 
@@ -11,18 +13,33 @@ export interface IBingoConfig {
     }
 }
 
-export default class BingoSheet {
+export default class BingoSheet extends Model {
 
+    protected static __ns = 'BingoSheet';
+    protected static schema = {
+        width: Types.number,
+        height: Types.number,
+        slots: Types.arrayOf(
+            Types.arrayOf(
+                Types.reference(BingoSlot)
+            )
+        ),
+        initialized: Types.date,
+    }
+
+    public width: number;
+    public height: number;
+    public slots: BingoSlot[][];
     public length: number;
     public initialized: Date;
 
-    constructor(
-        public width: number,
-        public height: number,
-        public slots: BingoSlot[][]
-    ) {
-        this.length = width * height;
-        this.initialized = new Date();
+    constructor(props: any) {
+        super(props, 'singleton');
+        this.width = props.width;
+        this.height = props.height;
+        this.slots = props.slots;
+        this.length = this.width * this.height;
+        this.initialized = props.date || new Date();
     }
 
     private static arrayShuffle<T>(arr: T[]): T[] {
@@ -44,7 +61,8 @@ export default class BingoSheet {
     private static createSlot(variation: IBingoSlotConfig, index: number, width: number): BingoSlot {
         const { value, label, description, imageURL } = variation;
         const [x, y] = [index % width, Math.floor(index / width)];
-        return new BingoSlot(value, label, description, imageURL, { x, y });
+        const slot = new BingoSlot({ value, label, description, imageURL, position: { x, y } });
+        return slot;
     }
 
     static init(config: IBingoConfig): BingoSheet {
@@ -55,7 +73,16 @@ export default class BingoSheet {
             const slot = this.createSlot(v, i, width);
             return slots[slot.position.y].push(slot);
         });
-        return new BingoSheet(config.sheet.width, config.sheet.height, slots);
+        const sheet = new BingoSheet({
+            width: config.sheet.width,
+            height: config.sheet.height,
+            slots
+        });
+        return sheet;
+    }
+
+    static exists(): BingoSheet | undefined {
+        return this.find<BingoSheet>('singleton');
     }
 
     /**
@@ -79,7 +106,7 @@ export default class BingoSheet {
             const {x, y} = slot.position;
             this.slots[y][x].punched = true;
         });
-        return this;
+        return this.save();
     }
 
     public isBingo(): boolean {
