@@ -47,7 +47,7 @@ export default class BingoSheet {
         return new BingoSlot(value, label, description, imageURL, { x, y });
     }
 
-    static create(config: IBingoConfig): BingoSheet {
+    static init(config: IBingoConfig): BingoSheet {
         const {width, height} = config.sheet;
         const slots: BingoSlot[][] = Array(height).fill(true).map(() => []);
         const length = width * height;

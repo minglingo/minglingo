@@ -5,7 +5,7 @@ import { QRCodeData } from "../models/qrcode";
 
 const BingoSheetContext = createContext({
     bingo: {
-        sheet: BingoSheet.create(config.bingo),
+        sheet: BingoSheet.init(config.bingo),
     },
     punch(data: QRCodeData) {},
     scanning: false,

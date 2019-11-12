@@ -30,7 +30,7 @@ const App: React.FC = () => {
   const startScanning = () => setScanState(true);
   const stopScanning = () => setScanState(false);
 
-  const [bingo, updateBingo] = useState({sheet: BingoSheet.create(config.bingo)});
+  const [bingo, updateBingo] = useState({sheet: BingoSheet.init(config.bingo)});
   const punch = (data: QRCodeData) => {
     const slot = bingo.sheet.hit(data.payload);
     if (!slot) return; // TODO: do something
@@ -40,7 +40,7 @@ const App: React.FC = () => {
   };
   const reset = () => {
     if (!window.confirm("Are you sure to delete current progress and start new game?")) return;
-    updateBingo({ sheet: BingoSheet.create(config.bingo) });
+    updateBingo({ sheet: BingoSheet.init(config.bingo) });
   };
 
   const context = {
