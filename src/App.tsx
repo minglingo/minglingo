@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.scss';
 
 import Game from './components/Game';
 import LaunchingPage from './components/LaunchingPage';

@@ -1,19 +1,4 @@
 @import '../../variables.scss';
 
 div.game-menu {
-    margin: 16px;
-    position: relative;
-    width: $bingo-sheet-size;
-    h1 {
-        margin: 0;
-    }
-    span {
-        color: gray;
-    }
-    img {
-        position: absolute;
-        top: 8px;
-        right: 0;
-        width: 32px;
-    }
 }

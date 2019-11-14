@@ -8,15 +8,25 @@ import GameMenu from '../GameMenu';
 import BingoSheetView from '../BingoSheetView';
 import VideoScanView from '../Detector/VideoScan/VideoScanView';
 
+import './index.scss';
+
 const Content: React.FC<{ reset: () => void, }> = ({ reset, }) => {
   return (
     <BingoSheetContext.Consumer>
-      {({bingo, punch}) => <div className="App">
-        <GameMenu app={config.application} sheet={bingo.sheet} reset={reset} />
-        <BingoSheetView sheet={bingo.sheet} />
-        <VideoScanView punch={punch} />
-      </div>
-      }
+      {({bingo, punch}) => (
+        <div className="Game">
+          <div className="Game_Title">
+            <GameMenu app={config.application} sheet={bingo.sheet} reset={reset} />
+          </div>
+          <div className="Game_Contents">
+            <div className="Bingo_Sheet_Label">
+              <span>YOUPR BINGO SHEET</span>
+            </div>
+            <BingoSheetView sheet={bingo.sheet} />
+            <VideoScanView punch={punch} />
+          </div>
+        </div>
+      )}
     </BingoSheetContext.Consumer>
   );
 };

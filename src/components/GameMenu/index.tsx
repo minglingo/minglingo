@@ -11,7 +11,7 @@ const GameMenu: React.FC<{ app: { name: string }, sheet: BingoSheet, reset: () =
             <span className="start-time">
                 {sheet.initialized.toLocaleString()}
             </span>
-            <img src={refresh} alt="Restart Game" onClick={reset} />
+            {/* <img src={refresh} alt="Restart Game" onClick={reset} /> */}
         </div>
     );
 };
