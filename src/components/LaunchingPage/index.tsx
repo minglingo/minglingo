@@ -1,13 +1,18 @@
 import React from 'react';
 import './index.scss';
 
+import logo from "../../logo.svg";
+
 const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
     return (
         <div className="App">
         <div className="launching-page">
             <div className="legend">
                 <div className="title">
-                    <h1>QRBINGO</h1>
+                    <h1>
+                        <img src={logo} alt="QRBINGO" />
+                        QRBINGO
+                    </h1>
                 </div>
                 <div className="introduction">
                     <ol>
