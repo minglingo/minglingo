@@ -34,12 +34,13 @@ const VideoScanView: React.FC<{ punch(data: QRCodeData): void }> = ({ punch }) =
     };
     return (
         <div className="video-capture-container">
-            <div>
+            <button>SCAN QR CODE</button>
+            {/* <div>
                 <video ref={vref} autoPlay playsInline width={vw} height={vh} />
             </div>
             <div onClick={startVideoScanning}>
                 <img src={camera} alt="Star Scanning QR" />
-            </div>
+            </div> */}
         </div>
     );
 };

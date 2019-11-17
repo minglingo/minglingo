@@ -1,19 +1,35 @@
+@import "../../variables.scss";
 
+.App {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/background.png');
+    background-size: contain;
+    background-repeat: repeat-x;
+}
 .Game {
+    height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    background-color: rgba(23, 0, 252, 1);
+
     .Game_Title {
         flex: 1;
+        min-height: 100px;
+        max-height: 160px;
         text-align: center;
         color: white;
         font-size: 2vh;
-        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .Game_Contents {
-        min-height: 660px;
-        background-color: rgba(252, 252, 252, 1);
+        flex: 1;
+        padding: 24px 0;
+        background-color: $game-background-color;
         border-radius: 32px 32px 0 0;
         display: flex;
         flex-direction: column;
@@ -22,6 +38,7 @@
             display: flex;
             align-items: flex-end;
             justify-content: center;
+            color: white;
         }
     }
 }

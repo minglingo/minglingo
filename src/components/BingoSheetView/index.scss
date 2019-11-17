@@ -3,15 +3,19 @@
 div.sheet-container {
     width: 100vw;
     height: 100vw;
+    max-width: 400px;
+    max-height: 400px;
+    margin: 32px auto;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 div.sheet-wrapper {
     margin: $spacing;
-    width: 80vw;
-    height: 80vw;
-
+    width: $sheet-width;
+    height: $sheet-width;
+    max-width: $max-sheet-width;
+    max-height: $max-sheet-width;
     display: flex;
     flex-direction: column;
 

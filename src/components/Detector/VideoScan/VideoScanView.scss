@@ -1,23 +1,14 @@
 @import "../../../variables.scss";
 
 div.video-capture-container {
-    width: $bingo-sheet-size;
-    background-color: lightgray;
     display: flex;
-    >div {
-        flex: 1;
-        video {
-            height: $bingo-sheet-size / 2;
-            width: $bingo-sheet-size / 2;
-            background-color: lightgreen;
-        }
-        canvas {
-            height: $bingo-sheet-size / 2;
-            width: $bingo-sheet-size / 2;
-            background-color: lightgreen;
-        }
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    justify-content: center;
+    button {
+        width: $sheet-width;
+        max-width: $max-sheet-width;
+        height: 64px;
+        background-color: #71D2F1;
+        border: none;
+        font-weight: bold;
     }
 }

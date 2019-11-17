@@ -14,16 +14,18 @@ const Content: React.FC<{ reset: () => void, }> = ({ reset, }) => {
   return (
     <BingoSheetContext.Consumer>
       {({bingo, punch}) => (
-        <div className="Game">
-          <div className="Game_Title">
-            <GameMenu app={config.application} sheet={bingo.sheet} reset={reset} />
-          </div>
-          <div className="Game_Contents">
-            <div className="Bingo_Sheet_Label">
-              <span>YOUPR BINGO SHEET</span>
+        <div className="App">
+          <div className="Game">
+            <div className="Game_Title">
+              <GameMenu app={config.application} sheet={bingo.sheet} reset={reset} />
             </div>
-            <BingoSheetView sheet={bingo.sheet} />
-            <VideoScanView punch={punch} />
+            <div className="Game_Contents">
+              <div className="Bingo_Sheet_Label">
+                <span>YOUPR BINGO SHEET</span>
+              </div>
+              <BingoSheetView sheet={bingo.sheet} />
+              <VideoScanView punch={punch} />
+            </div>
           </div>
         </div>
       )}
