@@ -7,6 +7,8 @@ import BingoSheet from "./models/sheet";
 import config from './config.json';
 import { QRCodeData } from './models/qrcode';
 
+import "./App.scss";
+
 const App: React.FC = () => {
   // BingoSheet.drop();
   const sheet = BingoSheet.exists();

@@ -1,14 +1,16 @@
 
 div.launching-page {
-    position: fixed;
-    background-color: rgba(23, 0, 252, 1);
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    position: relative;
+
+    height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
     .legend {
         display: flex;
         flex-direction: column;
