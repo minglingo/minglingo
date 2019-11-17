@@ -12,3 +12,41 @@ div.video-capture-container {
         font-weight: bold;
     }
 }
+
+div.Video_Stream_Container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    max-width: 480px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    .Video_Stream_Navigation {
+        min-height: 120px;
+        display: flex;
+        flex-direction: row;
+        >div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .nav-left {
+            flex: 1;
+            min-width: 40px;
+            >.nav-item-img {
+                margin-right: 8px;
+            }
+        }
+        .nav-title {
+            flex-grow: 1;
+        }
+        .nav-right {
+            flex: 1;
+            min-width: 40px;
+        }
+    }
+}
