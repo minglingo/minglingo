@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf static && rm ./precache-manifest.*.js && react-scripts build && mv ./build/* ./",
+    "build": "rm -rf static && rm -f ./precache-manifest.*.js && react-scripts build && mv ./build/* ./",
     "generate": "node ./scripts/generate.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

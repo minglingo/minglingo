@@ -38,6 +38,7 @@ const VideoStream: React.FC<{
             onSuccess(JSON.parse(qrcode.data) as QRCodeData);
         };
         id = setInterval(detect.bind(null, v, callback), 1 * 1000);
+    // eslint-disable-next-line
     }, []);
     return (
         <div className="Video_Stream_Container">
