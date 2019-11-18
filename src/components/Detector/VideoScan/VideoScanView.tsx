@@ -24,7 +24,6 @@ const VideoStream: React.FC<{
 }> = ({ stream, stop, video }) => {
     const onSuccess = (data: QRCodeData) => {
         if (video.current) video.current.pause();
-        alert(JSON.stringify(data));
         stop(stream, data);
     };
     useEffect(() => {
@@ -63,9 +62,9 @@ const VideoStream: React.FC<{
 const VideoScanView: React.FC<{ punch(data: QRCodeData): void }> = ({ punch }) => {
     const [stream, setStream] = useState<MediaStream>();
     const stop = (s: MediaStream, data?: QRCodeData) => {
+        if (data) punch(data);
         setStream(undefined);
         s.getTracks().map(track => track.stop())
-        if (data) punch(data);
     };
     const v = createRef<HTMLVideoElement>();
     const onClickStart = async () => {

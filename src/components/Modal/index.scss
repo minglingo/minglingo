@@ -1,0 +1,51 @@
+
+.Modal_Container {
+    transition: opacity 0.4s;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    .Modal_Background {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.84);
+        z-index: 1001;
+    }
+    .Modal_Content_Wrapper {
+        position: relative;
+        z-index: 1002;
+        width: 90vw;
+        height: 100vh;
+        max-width: 480px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .Modal_Content_Background {
+            width:80vw;
+            max-width: 440px;
+            padding: 8px 12px;
+            box-sizing: border-box;
+            background-color: white;
+            .Modal_Close_Action {
+                display: flex;
+                flex-direction: row-reverse;
+                .Modal_Close_Button {
+                    margin: 0;
+                    padding: 0;
+                    border: none;
+                    background-color: transparent;
+                    img {
+                        height: 28px;
+                    }
+                }
+            }
+        }
+    }
+}

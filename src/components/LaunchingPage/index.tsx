@@ -5,7 +5,6 @@ import logo from "../../logo.svg";
 
 const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
     return (
-        <div className="App">
         <div className="launching-page">
             <div className="legend">
                 <div className="title">
@@ -36,7 +35,6 @@ const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
                     <button onClick={start}>START!</button>
                 </div>
             </div>
-        </div>
         </div>
     );
 }
