@@ -55,7 +55,7 @@ export default class BingoSheet extends Model {
         while (dest.length < length) {
             dest.push(...this.arrayShuffle<IBingoSlotConfig>(arr))
         }
-        return dest;
+        return dest.slice(0, length);
     }
 
     private static createSlot(variation: IBingoSlotConfig, index: number, width: number): BingoSlot {
