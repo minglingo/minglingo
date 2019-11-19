@@ -11,7 +11,7 @@ div.sheet-container {
     justify-content: center;
 }
 div.sheet-wrapper {
-    padding: 4%;
+    padding: 6%;
     box-sizing: border-box;
     background-color: white;
 
@@ -32,8 +32,6 @@ div.sheet-wrapper {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            // background-color: white;
-            color: darkblue;
 
             .hole {
                 background-color: rgba(232, 232, 232, 1);
@@ -43,7 +41,7 @@ div.sheet-wrapper {
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                font-size: small;
+                font-size: x-small;
                 border-radius: 2px;
             }
 

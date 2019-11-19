@@ -20,7 +20,7 @@ const Content: React.FC<{ reset: () => void, }> = ({ reset, }) => {
           </div>
           <div className="Game_Contents">
             <div className="Bingo_Sheet_Label">
-              <span>YOUPR BINGO SHEET</span>
+              <h2>YOUPR BINGO SHEET</h2>
             </div>
             <BingoSheetView sheet={bingo.sheet} />
             <VideoScanView punch={punch} />
