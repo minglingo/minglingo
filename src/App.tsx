@@ -18,16 +18,24 @@ const App: React.FC = () => {
   const sheet = BingoSheet.exists();
   const [bingo, updateBingo] = useState({ sheet: sheet as BingoSheet });
 
-  const [modal, setModal] =  useState<ReactNode>(null);
-  const closeModal = () => setModal(null);
+  const [modalState, setModalState] = useState<{ content?: ReactNode, show: boolean }>({ content: null, show: false });
+  const closeModal = () => {
+    setTimeout(() => setModalState({ show: false }), 400);
+    setModalState({ show: false, content: modalState.content });
+  };
+  const showModal = (content: ReactNode) => {
+    setModalState({ show: false, content });
+    setTimeout(() => setModalState({ show: true, content }));
+  };
+
   const ctx = {
-    modal: null, setModal: (modal: ReactNode) => setModal(modal), closeModal,
+    modal: null, setModalState: (ms: { modal?: ReactNode, show: boolean }) => setModalState(ms), closeModal,
   }
 
   const punch = (data: QRCodeData) => {
     const slot = bingo.sheet.hit(data.payload);
     if (!slot) return; // TODO: do something
-    setModal(<ModalContentOnFound payload={data.payload} close={closeModal} />);
+    showModal(<ModalContentOnFound payload={data.payload} close={closeModal} />);
     updateBingo({ sheet: bingo.sheet.punch(slot) });
   };
 
@@ -41,7 +49,7 @@ const App: React.FC = () => {
     <ApplicationContext.Provider value={ctx}>
     <div className="App">
       {bingo.sheet ? <Game bingo={bingo} punch={punch} reset={reset} /> : <LaunchingPage start={start} />}
-      {modal ? <Modal close={closeModal}>{modal}</Modal> : null}
+      {modalState.content ? <Modal close={closeModal} {...modalState} /> : null}
     </div>
     </ApplicationContext.Provider>
   );

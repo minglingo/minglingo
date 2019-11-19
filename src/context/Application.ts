@@ -2,7 +2,7 @@ import { createContext, ReactNode } from "react";
 
 const ApplicationContext = createContext({
     modal: null,
-    setModal: (modal: ReactNode) => {},
+    setModalState: (state: { content?: ReactNode, show: boolean }) => { },
     closeModal: () => {},
 });
 

@@ -66,7 +66,7 @@ const VideoScanView: React.FC<{ punch(data: QRCodeData): void }> = ({ punch }) =
     const [stream, setStream] = useState<MediaStream>();
     const stop = (s: MediaStream, data?: QRCodeData) => {
         if (data) punch(data);
-        setStream(undefined);
+        setTimeout(() => setStream(undefined), 0);
         s.getTracks().map(track => track.stop())
     };
     const v = createRef<HTMLVideoElement>();
