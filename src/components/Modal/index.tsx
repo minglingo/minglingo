@@ -7,8 +7,7 @@ import "./index.scss";
 const Modal: React.FC<{
     close: () => void,
     children: ReactNode,
-    defaultClose?: boolean
-}> = ({ close, children, defaultClose = true }) => {
+}> = ({ close, children, }) => {
     const [opacity, setOpacity] = useState<number>(0);
     useEffect(() => setOpacity(1), []);
     return (
@@ -16,13 +15,8 @@ const Modal: React.FC<{
             <div className="Modal_Content_Wrapper">
                 <div
                     className="Modal_Content_Background"
-                    onClick={defaultClose ? () => {} : close}
+                    onClick={close}
                 >
-                    {defaultClose ? <div className="Modal_Close_Action">
-                        <button className="Modal_Close_Button" onClick={close}>
-                            <img src={closeIcon} alt="close" />
-                        </button>
-                    </div> : null}
                     <div className="Modal_Content">
                         {children}
                     </div>

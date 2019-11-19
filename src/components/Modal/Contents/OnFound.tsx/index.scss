@@ -1,0 +1,30 @@
+
+.Modal_Content_Found {
+    display: flex;
+    flex-direction: column;
+    .Found_Icon {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+    .Found_Message {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+        .Found_Value {
+            font-weight: bold;
+        }
+    }
+    .Found_Actions {
+        display: flex;
+        padding: 20px 0;
+        >button {
+            border: none;
+            display: block;
+            background-color: #71D2F1;
+            flex: 1;
+            padding: 20px;
+            font-weight: bold;
+        }
+    }
+}

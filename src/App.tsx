@@ -11,6 +11,7 @@ import "./App.scss";
 import Modal from './components/Modal';
 
 import ApplicationContext from "./context/Application";
+import ModalContentOnFound from './components/Modal/Contents/OnFound.tsx';
 
 const App: React.FC = () => {
   // BingoSheet.drop();
@@ -26,8 +27,7 @@ const App: React.FC = () => {
   const punch = (data: QRCodeData) => {
     const slot = bingo.sheet.hit(data.payload);
     if (!slot) return; // TODO: do something
-    // alert(`Congrats! You found the one!!\n\nThe person with you is ${data.payload.value.toString().toUpperCase()}!`)
-    setModal(<p>Found <b>{data.payload.value.toString().toUpperCase()}</b></p>)
+    setModal(<ModalContentOnFound payload={data.payload} close={closeModal} />);
     updateBingo({ sheet: bingo.sheet.punch(slot) });
   };
 

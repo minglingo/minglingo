@@ -2,7 +2,7 @@ import React, { createRef, useState, RefObject, useEffect } from 'react';
 import "./VideoScanView.scss";
 
 import { detectQRCodeFromVideo } from '../../../services/Detector';
-import { QRCodeData } from '../../../models/qrcode';
+import { QRCodeData, QRCodeAction } from '../../../models/qrcode';
 import { QRCode } from 'jsqr';
 
 import left from './caret-left.svg';
@@ -36,7 +36,10 @@ const VideoStream: React.FC<{
             clearInterval(id);
             onSuccess(JSON.parse(qrcode.data) as QRCodeData);
         };
-        id = setInterval(detect.bind(null, v, callback), 1 * 1000);
+        // {{{ DEBUG
+        // id = setInterval(detect.bind(null, v, callback), 1 * 1000);
+        setTimeout(() => onSuccess({ action: QRCodeAction.DEBUG, payload: { value: 'enfj' } }), 2000)
+        // }}}
     // eslint-disable-next-line
     }, []);
     return (
