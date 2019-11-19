@@ -1,4 +1,5 @@
 @import "../../../variables.scss";
+@import "../../../styles/sizing.scss";
 
 div.video-capture-container {
     display: flex;
@@ -15,15 +16,18 @@ div.video-capture-container {
 
 div.Video_Stream_Container {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 0;  bottom: 0;
+    left: 0; right: 0;
+    @extend .game-width;
     height: 100vh;
-    max-width: 480px;
     background-color: black;
     display: flex;
     flex-direction: column;
+
+    .Video_Stream_Movie {
+        @extend .game-square;
+    }
+
     .Video_Stream_Navigation {
         min-height: 120px;
         display: flex;

@@ -49,7 +49,7 @@ const VideoStream: React.FC<{
                 <div className="nav-title">Scan QR code</div>
                 <div className="nav-right"></div>
             </div>
-            <div>
+            <div className="Video_Stream_Movie">
                 <video ref={video} muted={true} autoPlay playsInline width={'100%'} height={'100%'} />
             </div>
             <div className="Video_Stream_Navigation Bottom">
@@ -67,12 +67,16 @@ const VideoScanView: React.FC<{ punch(data: QRCodeData): void }> = ({ punch }) =
         s.getTracks().map(track => track.stop())
     };
     const v = createRef<HTMLVideoElement>();
+    const c = createRef<HTMLDivElement>();
     const onClickStart = async () => {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode } });
+        const width = c.current!.offsetWidth;
+        const stream = await navigator.mediaDevices.getUserMedia({
+            audio: false, video: { facingMode, width, height: width }
+        });
         setStream(stream);
     };
     return (
-        <div className="video-capture-container">
+        <div className="video-capture-container" ref={c}>
             <button onClick={onClickStart}>SCAN QR CODE</button>
             {stream ? <VideoStream stream={stream} stop={stop} video={v} /> : null}
         </div>

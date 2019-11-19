@@ -1,0 +1,27 @@
+
+$default-game-width: 100vw;
+$default-sheet-width: 100vw;
+
+$max-game-width: 480px;
+$max-sheet-width:$max-game-width - 80px;
+
+.game-width {
+    width:     $default-game-width;
+    max-width: $max-game-width;
+}
+
+.game-square {
+    @extend .game-width;
+    height:     $default-game-width;
+    max-height: $max-game-width;
+}
+
+.sheet-width {
+    width:     $default-sheet-width;
+    max-width: $max-sheet-width;
+}
+.sheet-square {
+    @extend .game-width;
+    height:     $default-sheet-width;
+    max-height: $max-sheet-width;
+}

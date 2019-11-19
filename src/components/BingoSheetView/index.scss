@@ -1,15 +1,14 @@
 @import "../../variables.scss";
+@import "../../styles/sizing.scss";
 
 div.sheet-container {
-    width: 100vw;
-    height: 100vw;
-    max-width: 400px;
-    max-height: 400px;
+    @extend .sheet-square;
     margin: 32px auto;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 div.sheet-wrapper {
     padding: 6%;
     box-sizing: border-box;
