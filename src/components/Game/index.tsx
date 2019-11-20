@@ -6,7 +6,7 @@ import { QRCodeData } from '../../models/qrcode';
 import config from '../../config';
 import GameMenu from '../GameMenu';
 import BingoSheetView from '../BingoSheetView';
-import VideoScanView from '../Detector/VideoScan/VideoScanView';
+import VideoScanView from '../Scan/VideoScanView';
 
 import './index.scss';
 

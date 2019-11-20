@@ -1,8 +1,8 @@
 import React, { createRef, useState, RefObject, useEffect } from 'react';
 import "./VideoScanView.scss";
 
-import { detectQRCodeFromVideo } from '../../../services/Detector';
-import { QRCodeData } from '../../../models/qrcode';
+import { detectQRCodeFromVideo } from '../../services/Detector';
+import { QRCodeData } from '../../models/qrcode';
 import { QRCode } from 'jsqr';
 
 import left from './caret-left.svg';
