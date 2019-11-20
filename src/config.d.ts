@@ -1,6 +1,6 @@
-import { string } from "prop-types"
+import { ReactNode } from 'react';
 
-export type MessageGenerator = (args:any[]) => string;
+export type MessageGenerator = (args:any[]) => string | ReactNode;
 export type MessageValue = string | string[] | MessageGenerator | MessageGenerator[];
 
 export interface Config {
@@ -29,6 +29,7 @@ export interface Config {
         [lang:string]: {
             introduction: MessageValue;
             congratulation: MessageValue;
+            found: (args:string[]) => ReactNode;
         }
     };
 }

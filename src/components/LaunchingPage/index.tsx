@@ -18,7 +18,7 @@ const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
                 </div>
                 <div className="lang-list">
                     {config.languages.map((av) => {
-                        return <a href={`?lang=${av.lang}`}>{av.label}</a>;
+                        return <a key={av.lang} href={`?lang=${av.lang}`}>{av.label}</a>;
                     })}
                 </div>
                 <div className="introduction">

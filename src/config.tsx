@@ -1,3 +1,4 @@
+import React from 'react';
 import { Config } from "./config.d";
 
 const config: Config = {
@@ -116,7 +117,8 @@ const config: Config = {
                 "Congrats!",
                 "Show this screen to event staff",
                 "and get an awesome prize!"
-            ]
+            ],
+            found: (args) => <span>Found <b>{args[0]}</b>!</span>,
         },
         ja: {
             introduction: [
@@ -129,7 +131,8 @@ const config: Config = {
                 "お近くのスタッフにこちらの",
                 "画面を見せて、素敵なギフトを",
                 "お受け取りください。"
-            ]
+            ],
+            found: (args) => <span><b>{args[0]}</b> をみつけました！</span>,
         }
     }
 }

@@ -4,6 +4,8 @@ import "../common.scss";
 import check from './check.svg';
 import { Payload } from '../../../../models/qrcode';
 
+import messages from '../../../../service/messages';
+
 const ModalContentOnFound: React.FC<{
     payload: Payload,
     close: () => void,
@@ -11,16 +13,14 @@ const ModalContentOnFound: React.FC<{
     payload,
     close,
 }) => {
-    const found = payload.value.toString().toUpperCase();
+   const found = messages.get('found', [payload.value.toString().toUpperCase()]);
     return (
         <div className="Content_Wrapper">
             <div className="Content_Icon">
                 <img src={check} alt="Found" />
             </div>
             <div className="Content_Message">
-                <div>
-                    <span className="Found_Prefix">Found</span> <span className="Found_Value">{found}</span>
-                </div>
+                <div>{found}</div>
             </div>
             <div className="Content_Actions">
                 <button onClick={close}>VIEW YOUR CARD</button>
