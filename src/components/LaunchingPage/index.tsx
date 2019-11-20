@@ -2,8 +2,10 @@ import React from 'react';
 import './index.scss';
 
 import logo from "../../logo.svg";
+import messages from '../../service/messages';
 
 const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
+    const introduction = messages.get('introduction') as string[] || [];
     return (
         <div className="launching-page">
             <div className="legend">
@@ -13,22 +15,16 @@ const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
                         QRBINGO
                     </h1>
                 </div>
+                <div className="lang-list">
+                    {messages.getAvailableLangs().map((av) => {
+                        return <a href={`?lang=${av.lang}`}>{av.label}</a>;
+                    })}
+                </div>
                 <div className="introduction">
                     <ol>
-                        <li>
-                            <br />
-                            <div>
-                                Scan QR code of people around you
-                            </div>
-                        </li>
-                        <li>
-                            <br />
-                            Collect differnt types of QR codes
-                        </li>
-                        <li>
-                            <br />
-                            Aim for Bingo and win a prize!
-                        </li>
+                        {introduction.map((line, i) => <li key={i}>
+                            <br /><div>{line}</div>
+                        </li>)}
                     </ol>
                 </div>
                 <div className="start-button-wrapper">

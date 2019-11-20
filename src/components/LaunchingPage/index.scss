@@ -28,6 +28,16 @@ div.launching-page {
                 }
             }
         }
+        .lang-list {
+            display: flex;
+            a {
+                flex: 1;
+                text-align: center;
+                &:visited {
+                    color: white;
+                }
+            }
+        }
         .introduction {
             color: white;
             >ol {
@@ -38,6 +48,9 @@ div.launching-page {
                     margin-bottom: 16px;
                     list-style-position: inside;
                     text-align: center;
+                    div {
+                        font-weight: bold;
+                    }
                     // &:before {
                     //     width: 20px;
                     //     height: 20px;

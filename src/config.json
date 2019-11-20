@@ -93,16 +93,35 @@
         }
     },
     "messages": {
-        "_default_lang": "ja",
+        "_available_langs": [
+            {
+                "lang": "ja",
+                "label": "日本語",
+                "default": true
+            },
+            {
+                "lang": "en",
+                "label": "English"
+            }
+        ],
         "en": {
+            "introduction": [
+                "Scan QR code of people around you",
+                "Collect different MBTI types",
+                "Aim for Bingo and win a prize!"
+            ],
             "congratulations": [
                 "Congrats!",
                 "Show this screen to event staff",
                 "and get an awesome prize!"
-
             ]
         },
         "ja": {
+            "introduction": [
+                "近くの人のQRコードをスキャン",
+                "いろんなMBTIタイプを集めよう！",
+                "ビンゴを狙って商品をもらおう！"
+            ],
             "congratulations": [
                 "おめでとうございます！",
                 "お近くのスタッフにこちらの",
