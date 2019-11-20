@@ -1,5 +1,5 @@
-@import "../../variables.scss";
 @import "../../styles/sizing.scss";
+@import "../../styles/colors.scss";
 
 div.sheet-container {
     @extend .sheet-square;
@@ -12,12 +12,8 @@ div.sheet-container {
 div.sheet-wrapper {
     padding: 6%;
     box-sizing: border-box;
-    background-color: white;
-
-    width: $sheet-width;
-    height: $sheet-width;
-    max-width: $max-sheet-width;
-    max-height: $max-sheet-width;
+    background-color: $white-color;
+    @extend .sheet-square;
     display: flex;
     flex-direction: column;
 
@@ -33,7 +29,7 @@ div.sheet-wrapper {
             align-items: center;
 
             .hole {
-                background-color: rgba(232, 232, 232, 1);
+                background-color: $secondary-color;
                 height: 80%;
                 width: 80%;
                 display: flex;
@@ -47,11 +43,11 @@ div.sheet-wrapper {
             &.sheet-cell.punched {
                 font-weight: bold;
                 >.hole {
-                    color: white;
-                    background-color: blue;
+                    color: $white-color;
+                    background-color: $emphasize-color;
                 }
                 &.bingo>.hole {
-                    color: orange;
+                    color: $highlight-color;
                 }
             }
         }

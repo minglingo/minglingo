@@ -1,3 +1,4 @@
+@import "../../../styles/colors.scss";
 
 .Modal_Content_Wrapper {
     display: flex;
@@ -28,7 +29,7 @@
         >button {
             border: none;
             display: block;
-            background-color: #71D2F1;
+            background-color: $primary-color;
             flex: 1;
             padding: 20px;
             font-weight: bold;

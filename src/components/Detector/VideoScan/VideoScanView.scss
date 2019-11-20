@@ -1,14 +1,13 @@
-@import "../../../variables.scss";
 @import "../../../styles/sizing.scss";
+@import "../../../styles/colors.scss";
 
 div.video-capture-container {
     display: flex;
     justify-content: center;
     button {
-        width: $sheet-width;
-        max-width: $max-sheet-width;
+        @extend .sheet-width;
         height: 64px;
-        background-color: #71D2F1;
+        background-color: $primary-color;
         border: none;
         font-weight: bold;
     }
@@ -20,7 +19,7 @@ div.Video_Stream_Container {
     left: 0; right: 0;
     @extend .game-width;
     height: 100vh;
-    background-color: black;
+    background-color: $black-color;
     display: flex;
     flex-direction: column;
 
@@ -53,7 +52,7 @@ div.Video_Stream_Container {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: $white-color;
         }
         .nav-left {
             flex: 1;
