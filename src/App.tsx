@@ -11,32 +11,41 @@ import "./App.scss";
 import Modal from './components/Modal';
 
 import ApplicationContext from "./context/Application";
-import ModalContentOnFound from './components/Modal/Contents/OnFound.tsx';
+import ModalContentOnFound from './components/Modal/Contents/OnFound';
+import ModalContentOnBingoSucceeded from './components/Modal/Contents/OnBingoSucceeded';
 
 const App: React.FC = () => {
   // BingoSheet.drop();
   const sheet = BingoSheet.exists();
   const [bingo, updateBingo] = useState({ sheet: sheet as BingoSheet });
 
-  const [modalState, setModalState] = useState<{ content?: ReactNode, show: boolean }>({ content: null, show: false });
+  const [modalState, setModalState] = useState<{ content?: ReactNode, show: boolean, resolve?: () => void }>({
+    content: null, show: false,
+  });
   const closeModal = () => {
     setTimeout(() => setModalState({ show: false }), 400);
     setModalState({ show: false, content: modalState.content });
+    if (typeof modalState.resolve === 'function') modalState.resolve();
   };
   const showModal = (content: ReactNode) => {
-    setModalState({ show: false, content });
-    setTimeout(() => setModalState({ show: true, content }));
+    return new Promise((resolve) => {
+      setModalState({ show: false, content, resolve });
+      setTimeout(() => setModalState({ show: true, content, resolve }));
+    });
   };
 
   const ctx = {
     modal: null, setModalState: (ms: { modal?: ReactNode, show: boolean }) => setModalState(ms), closeModal,
   }
 
-  const punch = (data: QRCodeData) => {
+  const punch = async (data: QRCodeData) => {
     const slot = bingo.sheet.hit(data.payload);
     if (!slot) return; // TODO: do something
-    showModal(<ModalContentOnFound payload={data.payload} close={closeModal} />);
+    await showModal(<ModalContentOnFound payload={data.payload} close={closeModal} />);
     updateBingo({ sheet: bingo.sheet.punch(slot) });
+    if (bingo.sheet.isBingo()) setTimeout(() => {
+      showModal(<ModalContentOnBingoSucceeded close={closeModal} />);
+    }, 500); // FIXME: ひー
   };
 
   const reset = () => {

@@ -44,23 +44,16 @@ div.sheet-wrapper {
                 border-radius: 2px;
             }
 
-            &.sheet-cell.punched:not(.bingo)>.hole {
-                color: white;
-                background-color: blue;
+            &.sheet-cell.punched {
                 font-weight: bold;
-                box-shadow: 0 0 24px darkblue inset;
+                >.hole {
+                    color: white;
+                    background-color: blue;
+                }
+                &.bingo>.hole {
+                    color: orange;
+                }
             }
         }
     }
-
-    &.bingo>div.sheet-row {
-        >div.sheet-cell {
-            color: white;
-            background-color: deepskyblue;
-            &.bingo {
-                background-color: orange;
-            }
-        }
-    }
-
 }

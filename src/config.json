@@ -91,5 +91,24 @@
                 }
             ]
         }
+    },
+    "messages": {
+        "_default_lang": "ja",
+        "en": {
+            "congratulations": [
+                "Congrats!",
+                "Show this screen to event staff",
+                "and get an awesome prize!"
+
+            ]
+        },
+        "ja": {
+            "congratulations": [
+                "おめでとうございます！",
+                "お近くのスタッフにこちらの",
+                "画面を見せて、素敵なギフトを",
+                "お受け取りください。"
+            ]
+        }
     }
 }

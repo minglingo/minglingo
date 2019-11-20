@@ -1,21 +1,28 @@
 
-.Modal_Content_Found {
+.Modal_Content_Wrapper {
     display: flex;
     flex-direction: column;
-    .Found_Icon {
+    .Content_Icon {
         display: flex;
         justify-content: center;
         margin-top: 40px;
     }
-    .Found_Message {
+    .Content_Message {
         display: flex;
         justify-content: center;
         margin: 20px 0;
         .Found_Value {
             font-weight: bold;
         }
+        &.Lines {
+            flex-direction: column;
+            p {
+                margin: 0;
+                text-align: center;
+            }
+        }
     }
-    .Found_Actions {
+    .Content_Actions {
         display: flex;
         padding: 20px 0;
         >button {
