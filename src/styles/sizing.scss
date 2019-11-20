@@ -1,6 +1,6 @@
 
 $default-game-width: 100vw;
-$default-sheet-width: 100vw;
+$default-sheet-width: 80vw;
 
 $max-game-width: 480px;
 $max-sheet-width:$max-game-width - 80px;
@@ -20,8 +20,9 @@ $max-sheet-width:$max-game-width - 80px;
     width:     $default-sheet-width;
     max-width: $max-sheet-width;
 }
+
 .sheet-square {
-    @extend .game-width;
+    @extend .sheet-width;
     height:     $default-sheet-width;
     max-height: $max-sheet-width;
 }

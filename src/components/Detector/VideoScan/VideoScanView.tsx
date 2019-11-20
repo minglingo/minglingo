@@ -10,10 +10,10 @@ import left from './caret-left.svg';
 const isMobile = /(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent);
 const facingMode =  isMobile ? { exact: 'environment' } : 'user';
 
-const detect = (video: HTMLVideoElement, callback: (qrcode: QRCode | null) => void) => {
+const detect = (video: HTMLVideoElement, size: { width: number, height: number }, callback: (qrcode: QRCode | null) => void) => {
     const canvas = document.createElement('canvas');
     [canvas.width, canvas.height] = [video.width, video.height];
-    const qrcode = detectQRCodeFromVideo({ video, canvas })
+    const qrcode = detectQRCodeFromVideo({ video, canvas, size })
     callback(qrcode);
 };
 
@@ -26,6 +26,7 @@ const VideoStream: React.FC<{
         if (video.current) video.current.pause();
         stop(stream, data);
     };
+    const area = createRef<HTMLDivElement>();
     useEffect(() => {
         const v = video.current;
         if (!v) return console.error('video tag is not ready');
@@ -36,7 +37,8 @@ const VideoStream: React.FC<{
             clearInterval(id);
             onSuccess(JSON.parse(qrcode.data) as QRCodeData);
         };
-        id = setInterval(detect.bind(null, v, callback), 1 * 1000);
+        const { offsetWidth: width, offsetHeight: height } = area.current!;
+        id = setInterval(detect.bind(null, v, {width, height}, callback), 1 * 1000);
         // DEBUG:
         // setTimeout(() => onSuccess({ action: QRCodeAction.DEBUG, payload: { value: 'isfp' } }), 2000)
     // eslint-disable-next-line
@@ -52,6 +54,9 @@ const VideoStream: React.FC<{
                 <div className="nav-right"></div>
             </div>
             <div className="Video_Stream_Movie">
+                <div className="Video_Stream_Detect_Area">
+                    <div className="Video_Stream_Detect_Area_Line" ref={area}></div>
+                </div>
                 <video ref={video} muted={true} autoPlay playsInline width={'100%'} height={'100%'} />
             </div>
             <div className="Video_Stream_Navigation Bottom">
