@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import BingoSheet from "../models/sheet";
-import config from "../config.json";
+import config from "../config";
 import { QRCodeData } from "../models/qrcode";
 
 const BingoSheetContext = createContext({

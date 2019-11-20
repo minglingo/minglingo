@@ -1,5 +1,5 @@
 const qrcode = require('qrcode');
-const config = require('../src/config.json');
+const config = require('../src/config');
 
 const token = config.application.token || config.application.name;
 const action = 'detected';

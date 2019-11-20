@@ -3,7 +3,7 @@ import BingoSheetContext from '../../context/BingoSheet';
 import BingoSheet from '../../models/sheet';
 import { QRCodeData } from '../../models/qrcode';
 
-import config from '../../config.json';
+import config from '../../config';
 import GameMenu from '../GameMenu';
 import BingoSheetView from '../BingoSheetView';
 import VideoScanView from '../Detector/VideoScan/VideoScanView';

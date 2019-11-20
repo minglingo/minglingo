@@ -4,7 +4,7 @@ import Game from './components/Game';
 import LaunchingPage from './components/LaunchingPage';
 import BingoSheet from "./models/sheet";
 
-import config from './config.json';
+import config from './config';
 import { QRCodeData } from './models/qrcode';
 
 import "./App.scss";

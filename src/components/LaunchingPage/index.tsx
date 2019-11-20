@@ -2,6 +2,7 @@ import React from 'react';
 import './index.scss';
 
 import logo from "../../logo.svg";
+import config from '../../config';
 import messages from '../../service/messages';
 
 const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
@@ -16,7 +17,7 @@ const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
                     </h1>
                 </div>
                 <div className="lang-list">
-                    {messages.getAvailableLangs().map((av) => {
+                    {config.languages.map((av) => {
                         return <a href={`?lang=${av.lang}`}>{av.label}</a>;
                     })}
                 </div>

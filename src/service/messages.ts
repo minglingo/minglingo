@@ -1,11 +1,9 @@
-import { messages } from "../config.json";
+import config from '../config';
 
-function getAvailableLangs(): { lang: string, label: string, default: boolean }[] {
-    return (messages as any)._available_langs;
-}
+const messages = config.messages;
 
 function getDefaultLang(): string {
-    const availables = getAvailableLangs() || [];
+    const availables = config.languages || [];
     if (!availables) return 'ja';
     const found = availables.find((l) => l.default);
     if (!found) return 'ja';
@@ -21,5 +19,4 @@ function get(key: string): string | string[] | null {
 
 export default {
     get,
-    getAvailableLangs,
 };
