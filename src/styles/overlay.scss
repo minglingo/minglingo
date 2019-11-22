@@ -1,0 +1,5 @@
+
+$z-index-base: 0;
+$z-index-bingo-sheet: $z-index-base + 1000;
+$z-index-video-scan: $z-index-bingo-sheet + 1000;
+$z-index-modal: $z-index-video-scan + 1000;

@@ -1,7 +1,9 @@
 @import "../../styles/sizing.scss";
 @import "../../styles/colors.scss";
+@import "../../styles/overlay.scss";
 
 div.video-capture-container {
+    z-index: $z-index-video-scan;
     display: flex;
     justify-content: center;
     button {
@@ -28,7 +30,6 @@ div.Video_Stream_Container {
         position: relative;
         .Video_Stream_Detect_Area {
             position: absolute;
-            z-index: 201;
             @extend .game-square;
             display: flex;
             align-items: center;

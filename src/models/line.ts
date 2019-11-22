@@ -20,4 +20,17 @@ export default class BingoLine extends Model {
     this.succeeded = props.succeeded || new Date();
   }
 
+  public draw(ctx: CanvasRenderingContext2D, scale: number = 100) {
+    const start = this.slots[0].position;
+    const end = this.slots[this.slots.length - 1].position;
+    const unit = scale / this.slots.length;
+    const offset = unit / 2;
+    ctx.strokeStyle = 'orange';
+    ctx.lineWidth = scale / 100;
+    ctx.beginPath();
+    ctx.moveTo(offset + unit * start.x, offset + unit * start.y);
+    ctx.lineTo(offset + unit * end.x, offset + unit * end.y);
+    ctx.stroke();
+  }
+
 }

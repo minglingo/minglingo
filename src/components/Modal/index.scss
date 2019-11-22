@@ -1,4 +1,6 @@
 
+@import "../../styles/overlay.scss";
+
 .Modal_Container {
     opacity: 0;
     transition: opacity 0.4s;
@@ -7,7 +9,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: 1000;
+    z-index: $z-index-modal;
     .Modal_Background {
         position: absolute;
         left: 0;
@@ -15,11 +17,10 @@
         top: 0;
         bottom: 0;
         background-color: rgba(0, 0, 0, 0.84);
-        z-index: 1001;
     }
     .Modal_Content_Wrapper {
+        z-index: $z-index-modal + 1;
         position: relative;
-        z-index: 1002;
         width: 90vw;
         height: 100vh;
         max-width: 480px;

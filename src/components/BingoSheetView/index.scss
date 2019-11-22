@@ -1,5 +1,6 @@
 @import "../../styles/sizing.scss";
 @import "../../styles/colors.scss";
+@import "../../styles/overlay.scss";
 
 div.sheet-container {
     @extend .sheet-square;
@@ -7,17 +8,31 @@ div.sheet-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    background-color: $white-color;
+}
+
+div.Bingo_Line_Drawer_Container {
+    position: absolute;
+    padding: 6%;
+    box-sizing: border-box;
+    @extend .sheet-square;
+    display: flex;
+    canvas {
+        flex: 1;
+        width: 100%;
+        z-index: $z-index-bingo-sheet + 1;
+    }
 }
 
 div.sheet-wrapper {
     padding: 6%;
     box-sizing: border-box;
-    background-color: $white-color;
     @extend .sheet-square;
     display: flex;
     flex-direction: column;
-
     div.sheet-row {
+        z-index: $z-index-bingo-sheet + 2;
         display: flex;
         flex: 1;
 

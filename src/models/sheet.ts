@@ -118,6 +118,15 @@ export default class BingoSheet extends Model {
         return this.getBingoLines().length !== 0;
     }
 
+    public isCompleted(): boolean {
+        const { width, height } = this;
+        return this.getBingoLines().length >= width + height + 2;
+    }
+
+    public getBingoNumber(): number {
+        return this.getBingoLines().length;
+    }
+
     public getBingoLines(): BingoLine[] {
         const lines: BingoLine[] = [];
         lines.push(...this.getHorizontalBingo());
