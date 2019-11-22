@@ -1,6 +1,7 @@
 import {Model, Types} from 'chomex';
 
 import BingoSlot, { IBingoSlotConfig } from './slot';
+import BingoLine from './line';
 import { Payload } from './qrcode';
 
 export interface IBingoConfig {
@@ -24,6 +25,7 @@ export default class BingoSheet extends Model {
                 Types.reference(BingoSlot)
             )
         ),
+        lines: Types.arrayOf(Types.reference(BingoLine)),
         initialized: Types.date,
     }
 
@@ -31,6 +33,7 @@ export default class BingoSheet extends Model {
     public height: number;
     public slots: BingoSlot[][];
     public length: number;
+    public lines: BingoLine[];
     public initialized: Date;
 
     constructor(props: any) {
@@ -38,6 +41,7 @@ export default class BingoSheet extends Model {
         this.width = props.width;
         this.height = props.height;
         this.slots = props.slots;
+        this.lines = props.lines || [];
         this.length = this.width * this.height;
         this.initialized = props.date || new Date();
     }
@@ -106,69 +110,77 @@ export default class BingoSheet extends Model {
             const {x, y} = slot.position;
             this.slots[y][x].punched = true;
         });
+        this.lines = this.getBingoLines();
         return this.save();
     }
 
     public isBingo(): boolean {
-        return this.getBingo().length !== 0;
+        return this.getBingoLines().length !== 0;
     }
 
-    public getBingo(): BingoSlot[] {
-        let bingo: BingoSlot[] = [];
-        bingo = bingo.concat(this.getHorizontalBingo());
-        bingo = bingo.concat(this.getVerticalBingo());
-        bingo = bingo.concat(this.getDiagonalBingo());
-        this.markSlotsIfBingo(bingo);
-        return bingo;
+    public getBingoLines(): BingoLine[] {
+        const lines: BingoLine[] = [];
+        lines.push(...this.getHorizontalBingo());
+        lines.push(...this.getVerticalBingo())
+        lines.push(...this.getDiagonalBingo());
+        this.markSlotsIfBingo(lines);
+        return lines;
     }
 
-    private markSlotsIfBingo(bingo: BingoSlot[]) {
-        bingo.map((slot) => this.slots[slot.position.y][slot.position.x].bingo = true);
+    private markSlotsIfBingo(lines: BingoLine[]) {
+        lines.map(line => {
+            return line.slots.map(slot => {
+                // this.slots[slot.position.y][slot.position.x].bingo = true;
+                return slot.bingo = true;
+            })
+        })
     }
 
     /**
      * Return all the slots which constitute the horizontal bingo.
      */
-    public getHorizontalBingo(): BingoSlot[] {
+    public getHorizontalBingo(): BingoLine[] {
+        const lines: BingoLine[] = [];
         for (let row = 0; row < this.height; row++) {
             if (this.slots[row].every((slot) => slot.punched)) {
-                return this.slots[row];
+                lines.push(new BingoLine({ slots: this.slots[row] }))
             }
         }
-        return [];
+        return lines;
     }
 
     /**
      * Return all the slots which constitute the vertical bingo.
      */
-    public getVerticalBingo(): BingoSlot[] {
+    public getVerticalBingo(): BingoLine[] {
+        const lines: BingoLine[] = [];
         for (let col = 0; col < this.width; col++) {
             if (this.slots.every((row) => row[col].punched)) {
-                return this.slots.map((row) => row[col]).flat();
+                lines.push(new BingoLine({slots: this.slots.map((row) => row[col]).flat()}));
             }
         }
-        return [];
+        return lines;
     }
 
     /**
      * Return all the slots which constitute the diagonal bingo.
      */
-    public getDiagonalBingo(): BingoSlot[] {
-        let bingo: BingoSlot[] = [];
+    public getDiagonalBingo(): BingoLine[] {
+        const lines: BingoLine[] = [];
         if (this.width === this.height) {
             const len = Math.min(this.width, this.height);
             const backslash = this.slots.map((row, i) => row[i]);
             if (backslash.every(slot => slot.punched)) {
-                bingo = bingo.concat(backslash);
+                lines.push(new BingoLine({ slots: backslash }));
             }
             const slash = this.slots.map((row, i) => row[len - i - 1]);
             if (slash.every(slot => slot.punched)) {
-                bingo = bingo.concat(slash);
+                lines.push(new BingoLine({ slots: slash }));
             }
         } else {
             // TODO: Consider NON-SQUARE bingo sheet.
             return [];
         }
-        return bingo;
+        return lines;
     }
 }
