@@ -42,8 +42,9 @@ const App: React.FC = () => {
     const slot = bingo.sheet.hit(data.payload);
     if (!slot) return; // TODO: do something
     await showModal(<ModalContentOnFound payload={data.payload} close={closeModal} />);
+    const bingoCount = bingo.sheet.lines.length;
     updateBingo({ sheet: bingo.sheet.punch(slot) });
-    if (bingo.sheet.isBingo()) setTimeout(() => {
+    if (bingoCount < bingo.sheet.lines.length) setTimeout(() => {
       showModal(<ModalContentOnBingoSucceeded close={closeModal} />);
     }, 500); // FIXME: ひー
   };
