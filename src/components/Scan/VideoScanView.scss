@@ -16,6 +16,7 @@ div.video-capture-container {
 }
 
 div.Video_Stream_Container {
+    z-index: $z-index-video-scan + 1;
     position: absolute;
     top: 0;  bottom: 0;
     left: 0; right: 0;
@@ -29,6 +30,7 @@ div.Video_Stream_Container {
         @extend .game-square;
         position: relative;
         .Video_Stream_Detect_Area {
+        z-index: $z-index-video-scan + 2;
             position: absolute;
             @extend .game-square;
             display: flex;
