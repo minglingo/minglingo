@@ -6,7 +6,7 @@ export enum QRCodeAction {
 
 type AnyPayoload = any;
 export interface Payload extends AnyPayoload {
-    value: string | number;
+    value: string | number | string[] | number[];
 }
 
 export interface QRCodeData {

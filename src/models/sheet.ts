@@ -94,18 +94,19 @@ export default class BingoSheet extends Model {
      * or undefined if not found.
      * @param payload
      */
-    public hit(payload: Payload): BingoSlot | void {
+    public hit(payload: Payload): BingoSlot[] {
+        const values = payload.value instanceof Array ? payload.value : [payload.value];
         // eslint-disable-next-line
-        return this.slots.flat().find((slot) => slot.value === payload.value);
+        return this.slots.flat().filter((slot) => values.some(value => slot.value == value));
     }
 
     /**
      * punch marks the given hit slot as punched.
-     * @param hit
+     * @param hits
      */
-    public punch(hit: BingoSlot): BingoSheet {
+    public punch(hits: BingoSlot[]): BingoSheet {
         // eslint-disable-next-line
-        this.slots.flat().filter((slot) => slot.value === hit.value).map((slot) => {
+        this.slots.flat().filter((slot) => hits.some(hit => hit.value == slot.value)).map((slot) => {
             // slot.punched = true;
             const {x, y} = slot.position;
             this.slots[y][x].punched = true;
