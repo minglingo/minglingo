@@ -27,6 +27,7 @@ export interface Config {
     }[];
     messages: {
         [lang:string]: {
+            start_btn: MessageValue;
             introduction: MessageValue;
             congratulation: MessageValue;
             found: (args:string[]) => ReactNode;

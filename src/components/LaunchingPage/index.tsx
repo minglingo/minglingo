@@ -7,6 +7,7 @@ import messages from '../../service/messages';
 
 const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
     const introduction = messages.get('introduction') as string[] || [];
+    const startMessage = messages.get('start_btn') as string;
     return (
         <div className="launching-page">
             <div className="legend">
@@ -29,7 +30,7 @@ const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
                     </ol>
                 </div>
                 <div className="start-button-wrapper">
-                    <button onClick={start}>START!</button>
+                    <button onClick={start}>{startMessage}</button>
                 </div>
             </div>
         </div>

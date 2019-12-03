@@ -108,6 +108,7 @@ const config: Config = {
     ],
     messages: {
         en: {
+            start_btn: "START!",
             introduction: [
                 "Scan QR code of people around you",
                 "Collect different MBTI types",
@@ -121,6 +122,7 @@ const config: Config = {
             found: (args) => <span>Found <b>{args[0]}</b>!</span>,
         },
         ja: {
+            start_btn: "スタート！",
             introduction: [
                 "近くの人のQRコードをスキャン",
                 "いろんなMBTIタイプを集めよう！",
