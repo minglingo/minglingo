@@ -25,7 +25,7 @@ export default class BingoLine extends Model {
     const end = this.slots[this.slots.length - 1].position;
     const unit = scale / this.slots.length;
     const offset = unit / 2;
-    ctx.strokeStyle = 'orange';
+    ctx.strokeStyle = 'blue';
     ctx.lineWidth = scale / 100;
     ctx.beginPath();
     ctx.moveTo(offset + unit * start.x, offset + unit * start.y);
