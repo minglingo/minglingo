@@ -31,8 +31,9 @@
         .Bingo_Sheet_Label {
             height: 80px;
             display: flex;
-            align-items: flex-end;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
             color: $white-color;
             h2 {
                 font-size: 1.2em;

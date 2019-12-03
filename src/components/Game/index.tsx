@@ -21,6 +21,7 @@ const Content: React.FC<{ reset: () => void, }> = ({ reset, }) => {
           <div className="Game_Contents">
             <div className="Bingo_Sheet_Label">
               <h2>YOUR BINGO SHEET</h2>
+              {bingo.sheet.lines.length ? <span>{bingo.sheet.lines.length} bingo</span> : null}
             </div>
             <BingoSheetView sheet={bingo.sheet} />
             <VideoScanView punch={punch} />

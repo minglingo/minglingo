@@ -30,7 +30,8 @@ export interface Config {
             start_btn: MessageValue;
             introduction: MessageValue;
             congratulation: MessageValue;
-            found: (args:string[]) => ReactNode;
+            total_bingo_count: MessageValue;
+            found: MessageValue;
         }
     };
 }

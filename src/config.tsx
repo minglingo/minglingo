@@ -119,6 +119,7 @@ const config: Config = {
                 "Show this screen to event staff",
                 "and get an awesome prize!"
             ],
+            total_bingo_count: (args) => <span>You have {args[0]} bingo!</span>,
             found: (args) => <span>Found <b>{args[0]}</b>!</span>,
         },
         ja: {
@@ -134,6 +135,7 @@ const config: Config = {
                 "画面を見せて、素敵なギフトを",
                 "お受け取りください。"
             ],
+            total_bingo_count: (args) => <span>{args[0]}ビンゴ達成！</span>,
             found: (args) => <span><b>{args[0]}</b> をみつけました！</span>,
         }
     }

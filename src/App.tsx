@@ -45,7 +45,7 @@ const App: React.FC = () => {
     const bingoCount = bingo.sheet.lines.length;
     updateBingo({ sheet: bingo.sheet.punch(slots) });
     if (bingoCount < bingo.sheet.lines.length) setTimeout(() => {
-      showModal(<ModalContentOnBingoSucceeded close={closeModal} />);
+      showModal(<ModalContentOnBingoSucceeded close={closeModal} count={bingo.sheet.lines.length} />);
     }, 500); // FIXME: ひー
   };
 
