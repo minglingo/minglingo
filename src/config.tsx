@@ -111,7 +111,7 @@ const config: Config = {
             start_btn: "START!",
             introduction: [
                 "Scan QR code of people around you",
-                "Collect different MBTI types",
+                "Collect different trait tags",
                 "Aim for Bingo and win a prize!"
             ],
             congratulation: [
@@ -126,7 +126,7 @@ const config: Config = {
             start_btn: "スタート！",
             introduction: [
                 "近くの人のQRコードをスキャン",
-                "いろんなMBTIタイプを集めよう！",
+                "いろんなタイプのタグを集めよう！",
                 "ビンゴを狙って商品をもらおう！"
             ],
             congratulation: [
