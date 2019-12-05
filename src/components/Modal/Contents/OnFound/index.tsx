@@ -5,6 +5,14 @@ import check from './check.svg';
 import { Payload } from '../../../../models/qrcode';
 
 import messages from '../../../../service/messages';
+import config from '../../../../config';
+
+function getFoundValueTexts(values: string[] = []): string[] {
+    // FIXME: ugly
+    return config.bingo.slot.variations
+        .filter(v => values.some(val => val === v.value))
+        .map((v) => v.label.split('\n').join(''));
+}
 
 const ModalContentOnFound: React.FC<{
     payload: Payload,
@@ -13,7 +21,8 @@ const ModalContentOnFound: React.FC<{
     payload,
     close,
 }) => {
-   const found = messages.get('found', [payload.value.toString().toUpperCase()]);
+    const texts = getFoundValueTexts(payload.value as string[]);
+    const found = messages.get('found', texts);
     return (
         <div className="Content_Wrapper">
             <div className="Content_Icon">

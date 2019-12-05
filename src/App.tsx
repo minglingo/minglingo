@@ -39,9 +39,9 @@ const App: React.FC = () => {
   }
 
   const punch = async (data: QRCodeData) => {
+    await showModal(<ModalContentOnFound payload={data.payload} close={closeModal} />);
     const slots = bingo.sheet.hit(data.payload);
     if (!slots.length) return; // TODO: do something
-    await showModal(<ModalContentOnFound payload={data.payload} close={closeModal} />);
     const bingoCount = bingo.sheet.lines.length;
     updateBingo({ sheet: bingo.sheet.punch(slots) });
     if (bingoCount < bingo.sheet.lines.length) setTimeout(() => {

@@ -91,6 +91,103 @@ const config: Config = {
                     value: "isfp",
                     label: "IS\nFP",
                     description: "The Composer"
+                },
+                // Non-MBTI tags
+                {
+                    value: "sp",
+                    label: "SP"
+                },
+                {
+                    value: "p",
+                    label: "P"
+                },
+                {
+                    value: "ap",
+                    label: "AP"
+                },
+                {
+                    value: "em",
+                    label: "EM"
+                },
+                {
+                    value: "asc",
+                    label: "ASC"
+                },
+                {
+                    value: "ba",
+                    label: "BA"
+                },
+                {
+                    value: "mirts",
+                    label: "MI/RTS"
+                },
+                {
+                    value: "dadqb",
+                    label: "DAD/QB"
+                },
+                {
+                    value: "se",
+                    label: "S/E"
+                },
+                {
+                    value: "rni",
+                    label: "R&I"
+                },
+                {
+                    value: "itfac",
+                    label: "IT/FAC"
+                },
+                {
+                    value: "alf",
+                    label: "A/L/F"
+                },
+                {
+                    value: "ea",
+                    label: "EA"
+                },
+                {
+                    value: "comvg",
+                    label: "COM/VG"
+                },
+                {
+                    value: "pdrec",
+                    label: "PD/REC"
+                },
+                {
+                    value: "soa",
+                    label: "SO\nAdults"
+                },
+                {
+                    value: "soc",
+                    label: "SO\nChildren"
+                },
+                {
+                    value: "off",
+                    label: "OFF"
+                },
+                {
+                    value: "6ma",
+                    label: "6MA"
+                },
+                {
+                    value: "nep",
+                    label: "NEP"
+                },
+                {
+                    value: "kan",
+                    label: "KAN"
+                },
+                {
+                    value: "gt",
+                    label: "GT",
+                },
+                {
+                    value: "yep",
+                    label: "YEP"
+                },
+                {
+                    value: "brs",
+                    label: "BRS"
                 }
             ]
         }
@@ -120,7 +217,7 @@ const config: Config = {
                 "and get an awesome prize!"
             ],
             total_bingo_count: (args) => <span>You have {args[0]} bingo!</span>,
-            found: (args) => <span>Found <b>{args[0]}</b>!</span>,
+            found: (args) => <span>Found <b>{args.join(', ')}</b>!</span>,
         },
         ja: {
             start_btn: "スタート！",
@@ -136,7 +233,7 @@ const config: Config = {
                 "お受け取りください。"
             ],
             total_bingo_count: (args) => <span>{args[0]}ビンゴ達成！</span>,
-            found: (args) => <span><b>{args[0]}</b> をみつけました！</span>,
+            found: (args) => <span><b>{args.join(', ')}</b> をみつけました！</span>,
         }
     }
 }

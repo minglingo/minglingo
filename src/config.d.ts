@@ -16,7 +16,7 @@ export interface Config {
             variations: {
                 value: string;
                 label: string;
-                description: string;
+                description?: string;
             }[]
         }
     };
