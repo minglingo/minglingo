@@ -1,0 +1,12 @@
+@import "../../styles/sizing.scss";
+
+.AppScreen_Container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    .AppScreen_Main {
+        @extend app-screen;
+    }
+}

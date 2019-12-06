@@ -13,6 +13,7 @@ import Modal from './components/Modal';
 import ApplicationContext from "./context/Application";
 import ModalContentOnFound from './components/Modal/Contents/OnFound';
 import ModalContentOnBingoSucceeded from './components/Modal/Contents/OnBingoSucceeded';
+import AppScreen from './components/AppScreen';
 
 const App: React.FC = () => {
   // BingoSheet.drop();
@@ -58,7 +59,9 @@ const App: React.FC = () => {
   return (
     <ApplicationContext.Provider value={ctx}>
     <div className="App">
-      {bingo.sheet ? <Game bingo={bingo} punch={punch} reset={reset} /> : <LaunchingPage start={start} />}
+      <AppScreen>
+        {bingo.sheet ? <Game bingo={bingo} punch={punch} reset={reset} /> : <LaunchingPage start={start} />}
+      </AppScreen>
       {modalState.content ? <Modal close={closeModal} {...modalState} /> : null}
     </div>
     </ApplicationContext.Provider>
