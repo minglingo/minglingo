@@ -4,7 +4,7 @@ import "../common.scss";
 import check from './check.svg';
 import { Payload } from '../../../../models/qrcode';
 
-import messages from '../../../../service/messages';
+import messages from '../../../../services/messages';
 import config from '../../../../config';
 
 function getFoundValueTexts(values: string[] = []): string[] {

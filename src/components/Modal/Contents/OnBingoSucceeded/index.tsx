@@ -2,7 +2,7 @@ import React from 'react';
 import gift from './gift.svg';
 import closeicon from './close.png';
 import "../common.scss";
-import messages from '../../../../service/messages';
+import messages from '../../../../services/messages';
 
 const ModalContentOnBingoSucceeded: React.FC<{
     close: () => void,

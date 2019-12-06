@@ -3,7 +3,7 @@ import './index.scss';
 
 import logo from "../../logo.svg";
 import config from '../../config';
-import messages from '../../service/messages';
+import messages from '../../services/messages';
 
 const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
     const introduction = messages.get('introduction') as string[] || [];
