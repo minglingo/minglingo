@@ -37,9 +37,9 @@ div.Video_Stream_Container {
             align-items: center;
             justify-content: center;
             .Video_Stream_Detect_Area_Line {
-                @extend .sheet-square;
+                @extend .detect-square;
                 box-sizing: border-box;
-                border: dashed 40px rgba(255, 255, 255, 0.4);
+                border: dashed 8px rgba(255, 255, 255, 0.4);
             }
         }
         video {

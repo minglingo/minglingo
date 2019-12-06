@@ -1,9 +1,11 @@
 
 $default-game-width: 100vw;
 $default-sheet-width: 80vw;
+$default-detect-width: 40vw;
 
 $max-game-width: 480px;
-$max-sheet-width:$max-game-width - 80px;
+$max-sheet-width: $max-game-width - 80px;
+$max-detect-width: $max-sheet-width - 120px;
 
 .game-width {
     width:     $default-game-width;
@@ -25,4 +27,11 @@ $max-sheet-width:$max-game-width - 80px;
     @extend .sheet-width;
     height:     $default-sheet-width;
     max-height: $max-sheet-width;
+}
+
+.detect-square {
+    width: $default-detect-width;
+    max-width: $max-detect-width;
+    height: $default-detect-width;
+    max-height: $max-detect-width;
 }
