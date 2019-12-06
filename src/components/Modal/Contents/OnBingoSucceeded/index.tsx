@@ -1,5 +1,6 @@
 import React from 'react';
 import gift from './gift.svg';
+import closeicon from './close.png';
 import "../common.scss";
 import messages from '../../../../service/messages';
 
@@ -14,6 +15,9 @@ const ModalContentOnBingoSucceeded: React.FC<{
     const total = messages.get('total_bingo_count', [count]);
     return (
         <div className="Content_Wrapper" onClick={close}>
+            <div className="Content_Action" style={{ textAlign: 'right' }}>
+                <img src={closeicon} alt="close" style={{ width: '24px' }} />
+            </div>
             <div className="Content_Icon">
                 <img src={gift} alt="Congraturations!" />
             </div>
