@@ -6,7 +6,7 @@ import './index.scss';
  * Users can just use this component as a parent and provide any children to this.
  */
 const AppScreen: React.FC<{
-    styles?: React.HTMLAttributes<HTMLDivElement>,
+    styles?: React.CSSProperties,
     children: React.ReactNode,
 }> = ({ styles = {}, children }) => {
     return (

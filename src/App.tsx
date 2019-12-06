@@ -1,21 +1,29 @@
 import React, { useState, ReactNode } from 'react';
 
-import Game from './components/Game';
-import LaunchingPage from './components/LaunchingPage';
-import BingoSheet from "./models/sheet";
-
+// Models
 import config from './config';
+import BingoSheet from "./models/sheet";
 import { QRCodeData } from './models/qrcode';
 
-import "./App.scss";
+// Components
+import Game from './components/Game';
+import LaunchingPage from './components/LaunchingPage';
 import Modal from './components/Modal';
-
 import ApplicationContext from "./context/Application";
 import ModalContentOnFound from './components/Modal/Contents/OnFound';
 import ModalContentOnBingoSucceeded from './components/Modal/Contents/OnBingoSucceeded';
 import AppScreen from './components/AppScreen';
+import VideoScanView from './components/VideoScan';
+
+// Styles
+import "./App.scss";
+
+// Let mobile app use rear cameras
+const isMobile = /(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent);
+const facingMode =  isMobile ? { exact: 'environment' } : 'user';
 
 const App: React.FC = () => {
+
   // BingoSheet.drop();
   const sheet = BingoSheet.exists();
   const [bingo, updateBingo] = useState({ sheet: sheet as BingoSheet });
@@ -39,6 +47,8 @@ const App: React.FC = () => {
     modal: null, setModalState: (ms: { modal?: ReactNode, show: boolean }) => setModalState(ms), closeModal,
   }
 
+  const [stream, setStream] = useState<MediaStream>();
+
   const punch = async (data: QRCodeData) => {
     await showModal(<ModalContentOnFound payload={data.payload} close={closeModal} />);
     const slots = bingo.sheet.hit(data.payload);
@@ -47,22 +57,62 @@ const App: React.FC = () => {
     updateBingo({ sheet: bingo.sheet.punch(slots) });
     if (bingoCount < bingo.sheet.lines.length) setTimeout(() => {
       showModal(<ModalContentOnBingoSucceeded close={closeModal} count={bingo.sheet.lines.length} />);
-    }, 500); // FIXME: ひー
+    }, 500);
   };
 
+  const startScanning = async () => {
+    const width = 400; // FIXME
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: false, video: { facingMode, width, height: width }
+    });
+    setStream(stream);
+  };
+  const stopScanning = (data?: QRCodeData) => {
+      setTimeout(() => setStream(undefined), 0);
+      if (stream) stream.getTracks().map(track => track.stop())
+      if (data) punch(data);
+  };
+
+  // Game control
   const reset = () => {
     if (!window.confirm("Are you sure to delete current progress and start new game?")) return;
     updateBingo({ sheet: BingoSheet.init(config.bingo).save<BingoSheet>() });
   };
   const start = () => updateBingo({ sheet: BingoSheet.init(config.bingo).save<BingoSheet>() });
 
+  const ApplicationStoryContainer = (
+    <AppScreen>
+      {bingo.sheet ?
+        <Game
+          bingo={bingo}
+          reset={reset}
+          startScanning={startScanning}
+        />
+        : <LaunchingPage start={start} />
+      }
+    </AppScreen>
+  );
+
+  const ScanningStoryContainer = (
+    stream ?
+      <AppScreen styles={{ zIndex: 2000 }}>
+        <VideoScanView stream={stream} stop={stopScanning} />
+      </AppScreen>
+      : null
+  );
+
+  const ModalStoryContainer = (
+    modalState.content ?
+      <Modal close={closeModal} {...modalState} />
+      : null
+  );
+
   return (
     <ApplicationContext.Provider value={ctx}>
     <div className="App">
-      <AppScreen>
-        {bingo.sheet ? <Game bingo={bingo} punch={punch} reset={reset} /> : <LaunchingPage start={start} />}
-      </AppScreen>
-      {modalState.content ? <Modal close={closeModal} {...modalState} /> : null}
+      {ApplicationStoryContainer}
+      {ScanningStoryContainer}
+      {ModalStoryContainer}
     </div>
     </ApplicationContext.Provider>
   );

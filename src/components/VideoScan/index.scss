@@ -2,22 +2,8 @@
 @import "../../styles/colors.scss";
 @import "../../styles/overlay.scss";
 
-div.video-capture-container {
-    z-index: $z-index-video-scan;
-    display: flex;
-    justify-content: center;
-    button {
-        @extend .sheet-width;
-        height: 64px;
-        background-color: $primary-color;
-        border: none;
-        font-weight: bold;
-    }
-}
-
 div.Video_Stream_Container {
     z-index: $z-index-video-scan + 1;
-    position: absolute;
     top: 0;  bottom: 0;
     left: 0; right: 0;
     @extend .game-width;
@@ -48,7 +34,7 @@ div.Video_Stream_Container {
     }
 
     .Video_Stream_Navigation {
-        min-height: 120px;
+        min-height: 80px;
         display: flex;
         flex-direction: row;
         >div {
