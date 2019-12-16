@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf docs && react-scripts build && mv build docs",
+    "build": "(if [ -f docs/CNAME ]; then mv docs/CNAME ./ ; fi) && rm -rf docs && react-scripts build && mv build docs && (if [ -f ./CNAME ]; then mv ./CNAME ./docs; fi)",
     "generate": "node ./scripts/generate.js",
     "test": "react-scripts test",
     "lint": "eslint ./src/**/*.ts",
