@@ -24,6 +24,9 @@ const facingMode =  isMobile ? { exact: 'environment' } : 'user';
 
 const App: React.FC = () => {
 
+  const r = (new URL(window.location.href)).searchParams.get('reset');
+  if (r === '1' || r === 'true') BingoSheet.drop();
+
   // BingoSheet.drop();
   const sheet = BingoSheet.exists();
   const [bingo, updateBingo] = useState({ sheet: sheet as BingoSheet });
