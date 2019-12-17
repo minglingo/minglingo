@@ -8,13 +8,14 @@ import messages from '../../services/messages';
 const LaunchingPage: React.FC<{start: () => void}> = ({start}) => {
     const introduction = messages.get('introduction') as string[] || [];
     const startMessage = messages.get('start_btn') as string;
+    const app = config.application;
     return (
         <div className="launching-page">
             <div className="legend">
                 <div className="title">
                     <h1>
-                        <img src={logo} alt="QRBINGO" />
-                        QRBINGO
+                        <img src={logo} alt={app.name} />
+                        {app.name}
                     </h1>
                 </div>
                 <div className="lang-list">
