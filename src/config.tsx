@@ -162,8 +162,8 @@ const config: Config = {
                     label: "SO\nChildren"
                 },
                 {
-                    value: "off",
-                    label: "OFF"
+                    value: "prh",
+                    label: "PRH"
                 },
                 {
                     value: "6ma",
