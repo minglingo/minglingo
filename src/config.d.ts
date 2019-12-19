@@ -6,6 +6,7 @@ export type MessageValue = string | string[] | MessageGenerator | MessageGenerat
 export interface Config {
     application: {
         name: string;
+        banner_link?: string;
     };
     bingo: {
         sheet: {
@@ -32,6 +33,7 @@ export interface Config {
             congratulation: MessageValue;
             total_bingo_count: MessageValue;
             found: MessageValue;
+            banner_message?: MessageValue;
         }
     };
 }

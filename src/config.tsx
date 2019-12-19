@@ -3,7 +3,8 @@ import { Config } from "./config.d";
 
 const config: Config = {
     application: {
-        name: "MINGLINGO"
+        name: "MINGLINGO",
+        banner_link: "https://github.com/otiai10",
     },
     bingo: {
         sheet: {
@@ -218,6 +219,7 @@ const config: Config = {
             ],
             total_bingo_count: (args) => <span>You have {args[0]} bingo!</span>,
             found: (args) => <span>Found <b>{args.join(', ')}</b>!</span>,
+            banner_message: (args) => <span>Vote for best dressed <a href={args[0]} target="_blank" rel="noopener noreferrer">here!</a></span>,
         },
         ja: {
             start_btn: "スタート！",
@@ -234,6 +236,7 @@ const config: Config = {
             ],
             total_bingo_count: (args) => <span>{args[0]}ビンゴ達成！</span>,
             found: (args) => <span><b>{args.join(', ')}</b> をみつけました！</span>,
+            banner_message: (args) => <span>ベストドレッサーに<a href={args[0]} target="_blank" rel="noopener noreferrer">投票しよう</a></span>,
         }
     }
 }

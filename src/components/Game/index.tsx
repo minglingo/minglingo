@@ -6,6 +6,7 @@ import GameMenu from '../GameMenu';
 import BingoSheetView from '../BingoSheetView';
 
 import './index.scss';
+import LinkBanner from '../Banner';
 
 const BingoSheetLabel: React.FC<{
   sheet: BingoSheet,
@@ -28,7 +29,6 @@ const BingoScanTrigger: React.FC<{
   )
 }
 
-
 const Game: React.FC<{
   bingo: { sheet: BingoSheet },
   reset(): void,
@@ -36,6 +36,7 @@ const Game: React.FC<{
 }> = ({ bingo, reset, startScanning }) => {
   return (
     <div className="Game">
+      {config.application.banner_link ? <LinkBanner link={config.application.banner_link} /> : null}
       <div className="Game_Title">
         <GameMenu app={config.application} sheet={bingo.sheet} reset={reset} />
       </div>
