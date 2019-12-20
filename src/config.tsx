@@ -4,7 +4,7 @@ import { Config } from "./config.d";
 const config: Config = {
     application: {
         name: "MINGLINGO",
-        banner_link: "https://github.com/otiai10",
+        banner_link: "http://bit.do/YEP_Dress",
     },
     bingo: {
         sheet: {
