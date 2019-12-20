@@ -13,7 +13,7 @@ const LineDrawerCanvas: React.FC<{ sheet: BingoSheet }> = ({ sheet }) => {
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
         lines.map(line => line.draw(ctx, scale));
-        console.log('Completed:', sheet.isCompleted());
+        // console.log('Completed:', sheet.isCompleted());
     };
 
     const ref = createRef<HTMLCanvasElement>();
