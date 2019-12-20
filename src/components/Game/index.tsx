@@ -39,6 +39,8 @@ const Game: React.FC<{
 
   useEffect(() => {
     if (!config.application.banner_link) return;
+    const url = new URL(window.location.href);
+    if (url.searchParams.get('banner')) return updateShouldDisplayBanner(true);
     const targetEpoch = 1576839600000; // 2019/12/20/20:00:00 (JST)
     const id = setInterval(() => {
       if (Date.now() >= targetEpoch) {
