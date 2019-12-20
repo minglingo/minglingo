@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BingoSheet from '../../models/sheet';
 
 import config from '../../config';
@@ -34,9 +34,23 @@ const Game: React.FC<{
   reset(): void,
   startScanning(): void,
 }> = ({ bingo, reset, startScanning }) => {
+
+  const [shouldDisplayBanner, updateShouldDisplayBanner] = useState<boolean>()
+
+  useEffect(() => {
+    if (!config.application.banner_link) return;
+    const targetEpoch = 1576839600000; // 2019/12/20/20:00:00 (JST)
+    const id = setInterval(() => {
+      if (Date.now() >= targetEpoch) {
+        clearInterval(id);
+        updateShouldDisplayBanner(true);
+      }
+    }, 1000);
+  }, []);
+
   return (
     <div className="Game">
-      {config.application.banner_link ? <LinkBanner link={config.application.banner_link} /> : null}
+      {shouldDisplayBanner ? <LinkBanner link={config.application.banner_link as string} /> : null}
       <div className="Game_Title">
         <GameMenu app={config.application} sheet={bingo.sheet} reset={reset} />
       </div>
