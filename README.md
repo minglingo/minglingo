@@ -1,5 +1,7 @@
 # MINGLINGO
 
+![](https://github.com/minglingo/minglingo/workflows/Node%20CI/badge.svg)
+
 **MINGLINGO** is a pure JavaScript application to play bingo game by scanning QR code of party participants.
 
 # How to play
