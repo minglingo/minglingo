@@ -4,12 +4,11 @@ import { Config } from "./config.d";
 const config: Config = {
     application: {
         name: "MINGLINGO",
-        banner_link: "http://bit.do/YEP_Dress",
     },
     bingo: {
         sheet: {
-            width: 5,
-            height: 5
+            width: 4,
+            height: 4,
         },
         slot: {
             variations: [
@@ -93,103 +92,6 @@ const config: Config = {
                     label: "IS\nFP",
                     description: "The Composer"
                 },
-                // Non-MBTI tags
-                {
-                    value: "sp",
-                    label: "SP"
-                },
-                {
-                    value: "p",
-                    label: "P"
-                },
-                {
-                    value: "ap",
-                    label: "AP"
-                },
-                {
-                    value: "em",
-                    label: "EM"
-                },
-                {
-                    value: "asc",
-                    label: "ASC"
-                },
-                {
-                    value: "ba",
-                    label: "BA"
-                },
-                {
-                    value: "mirts",
-                    label: "MI/RTS"
-                },
-                {
-                    value: "dadqb",
-                    label: "DAD/QB"
-                },
-                {
-                    value: "se",
-                    label: "S/E"
-                },
-                {
-                    value: "rni",
-                    label: "R&I"
-                },
-                {
-                    value: "itfac",
-                    label: "IT/FAC"
-                },
-                {
-                    value: "alf",
-                    label: "A/L/F"
-                },
-                {
-                    value: "ea",
-                    label: "EA"
-                },
-                {
-                    value: "comvg",
-                    label: "COM/VG"
-                },
-                {
-                    value: "pdrec",
-                    label: "PD/REC"
-                },
-                {
-                    value: "soa",
-                    label: "SO\nAdults"
-                },
-                {
-                    value: "soc",
-                    label: "SO\nChildren"
-                },
-                {
-                    value: "prh",
-                    label: "PRH"
-                },
-                {
-                    value: "6ma",
-                    label: "6MA"
-                },
-                {
-                    value: "nep",
-                    label: "NEP"
-                },
-                {
-                    value: "kan",
-                    label: "KAN"
-                },
-                {
-                    value: "gt",
-                    label: "GT",
-                },
-                {
-                    value: "yep",
-                    label: "YEP"
-                },
-                {
-                    value: "brs",
-                    label: "BRS"
-                }
             ]
         }
     },
