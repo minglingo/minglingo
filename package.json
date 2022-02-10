@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "qrcode": "^1.4.4"
   },
   "homepage": "."
